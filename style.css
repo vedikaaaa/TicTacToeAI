@@ -13,3 +13,8 @@
     font-weight: bold;
     font-size: 70px;
 }
+.board {
+    height: 420px;
+    width: 420px;
+    margin: 0 auto;
+}
