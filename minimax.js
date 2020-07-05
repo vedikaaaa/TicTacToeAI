@@ -97,10 +97,10 @@ function miniMax(newGameBoard, currentPlayer, alpha, beta) {
         newGameBoard[availableMoves[i]] = currentPlayer;
 
         if (currentPlayer == player_2) {
-            var maxScoreIndex = miniMax(newGameBoard, player,alpha);
+            var maxScoreIndex = miniMax(newGameBoard, player,alpha,beta);
             move.score = maxScoreIndex.score;
         } else {
-            var maxScoreIndex = miniMax(newGameBoard, player_2,beta);
+            var maxScoreIndex = miniMax(newGameBoard, player_2,alpha,beta);
             move.score = maxScoreIndex.score;
         }
 
