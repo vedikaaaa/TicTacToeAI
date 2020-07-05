@@ -73,7 +73,7 @@ function turn(boxId, player) {
     currentTurn = currentTurn == 'X' ? 'O' : 'X';
 }
 
-function miniMax(newGameBoard, currentPlayer) {
+function miniMax(newGameBoard, currentPlayer, alpha, beta) {
     var availableMoves = getAvailableMoves();
 
     if (checkWin(newGameBoard, player)) {
@@ -97,10 +97,10 @@ function miniMax(newGameBoard, currentPlayer) {
         newGameBoard[availableMoves[i]] = currentPlayer;
 
         if (currentPlayer == player_2) {
-            var maxScoreIndex = miniMax(newGameBoard, player);
+            var maxScoreIndex = miniMax(newGameBoard, player,alpha);
             move.score = maxScoreIndex.score;
         } else {
-            var maxScoreIndex = miniMax(newGameBoard, player_2);
+            var maxScoreIndex = miniMax(newGameBoard, player_2,beta);
             move.score = maxScoreIndex.score;
         }
 
@@ -115,7 +115,12 @@ function miniMax(newGameBoard, currentPlayer) {
         for (var i = 0; i < moves.length; i++) {
             if (moves[i].score > bestScore) {
                 bestScore = moves[i].score;
+                if(alpha<bestScore)
+                alpha = bestScore;
+                if(beta<=alpha)
+                break;
                 bestChoice = i;
+                
             }
         }
     } else {
@@ -123,6 +128,10 @@ function miniMax(newGameBoard, currentPlayer) {
         for (var i = 0; i < moves.length; i++) {
             if (moves[i].score < bestScore) {
                 bestScore = moves[i].score;
+                if(beta>bestScore)
+                beta = bestScore;
+                if(beta<=alpha)
+                break;
                 bestChoice = i;
             }
         }
@@ -181,7 +190,7 @@ function checkTie() {
 }
 
 function bestChoice() {
-    return miniMax(boardGame, player_2).index;
+    return miniMax(boardGame, player_2,Number.MIN_SAFE_INTEGER,Number.MAX_SAFE_INTEGER).index;
 }
 
 function cleanBoard() {
