@@ -5,6 +5,8 @@ var player = 'X';
 var player_2 = 'O';
 var currentTurn = player;
 var gameIsOver = 1;
+var alpha =Number.MIN_SAFE_INTEGER;
+var beta =Number.MAX_SAFE_INTEGER;
 const winCombos = [
     [0, 1, 2],
     [3, 4, 5],
@@ -190,7 +192,7 @@ function checkTie() {
 }
 
 function bestChoice() {
-    return miniMax(boardGame, player_2,Number.MIN_SAFE_INTEGER,Number.MAX_SAFE_INTEGER).index;
+    return miniMax(boardGame, player_2,alpha,beta).index;
 }
 
 function cleanBoard() {
