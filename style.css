@@ -46,7 +46,7 @@ h1{
 #panel{
 	margin-top: 30px;
     font-size: 30px;
-    background-attachment: url(spaceship.png);
+    background-image: url(nebula.jpg);
 }
 
 .settings{
