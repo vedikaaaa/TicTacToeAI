@@ -1,5 +1,6 @@
-html{
-	background-color: #78909C;
+body{
+    background-color: rgb(92, 6, 153);
+    font-family: 'Oxygen', sans-serif;
 }
 
 table {
