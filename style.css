@@ -6,7 +6,17 @@ body{
     background-color: indigo;
     font-family: 'Oxygen', sans-serif;
 }
-
+#header-nav{
+    background-color: navy;
+    border-radius: 0;
+    border: 0;
+}
+#logo-img{
+    background:url('purple-planet.png')no-repeat;
+    widows: 150px;
+    height: 150px;
+    margin: 10px 15px 10px 0;
+}
 table {
    
   border: 1px solid #2c3e50 ;
