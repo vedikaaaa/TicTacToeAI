@@ -12,7 +12,7 @@ body{
     border: 0;
 }
 #logo-img{
-    background:url('Assets/purple-planet.png')no-repeat;
+    background-image: url('Assets/spaceship.png') no-repeat;
     widows: 150px;
     height: 150px;
     margin: 10px 15px 10px 0;
