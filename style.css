@@ -1,5 +1,6 @@
 html{
-    background-color: navy;
+    background-color:rgb(63, 31, 95);
+    background-image: url('Assets/nebula.jpg');
 }
 body{
     background-color: indigo;
