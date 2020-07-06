@@ -1,5 +1,8 @@
+html{
+    background-color: navy;
+}
 body{
-    background-color: rgb(92, 6, 153);
+    background-color: indigo;
     font-family: 'Oxygen', sans-serif;
 }
 
