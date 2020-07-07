@@ -68,8 +68,8 @@ function turn(boxId, player) {
     currentTurnLabel.text("Is your turn: " + currentPlayer);
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
-    let gameFinished = checkWin(boardGame, player);
-    if (gameFinished||checkTie()) {
+    let gameFinished = checkWin(boardGame, player)||checkTie();
+    if (gameFinished) {
         gameOver(gameFinished);
     }
     
@@ -187,7 +187,7 @@ function checkTie() {
 	        opacity: '0.4'
 	    });
         currentTurnLabel.text("TIE GAME!");
-        currentTurn = currentTurn == 'X' ? 'O' : 'X';
+        
         return true;
     }
     return false;
