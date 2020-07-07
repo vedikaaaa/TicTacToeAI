@@ -11,18 +11,18 @@ body{
     border-radius: 0;
     border: 0;
 }
-/* #logo-img{
-    background: url('OIP.jpg') no-repeat;
+#logo-img{
+    background: url('spaceship.png') no-repeat;
     width: 200px;
     height: 200px;
-    margin : 10px 10px 10px 10px; 
-} */
+    margin : auto; 
+}
 .navbar-brand{
     padding-top: 25px;
 }
 .navbar-brand h1{
 font-family: 'Lora', serif;
-color: turquoise;
+color: rgb(64, 88, 141);
 font-size: 1.5em;
 text-transform: uppercase;
 font-weight: bold;
