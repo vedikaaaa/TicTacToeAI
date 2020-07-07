@@ -12,10 +12,10 @@ body{
     border: 0;
 }
 #logo-img{
-    background: url('spaceship.png') no-repeat;
+    background: url('Assets/OIP.jpg') no-repeat;
     width: 200px;
     height: 200px;
-    margin : auto; 
+    margin : 0 0 0 0; 
 }
 .navbar-brand{
     padding-top: 25px;
@@ -26,7 +26,7 @@ color: rgb(64, 88, 141);
 font-size: 1.5em;
 text-transform: uppercase;
 font-weight: bold;
-text-shadow: 1px 1px 1px #222;
+text-shadow: 1px 1px 1px  rgb(209, 179, 179);
 margin-top: 0;
 margin-bottom: 0;
 line-height: .75;
