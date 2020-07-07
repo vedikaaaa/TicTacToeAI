@@ -30,7 +30,7 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
-    currentTurn= $("#f1").text;
+
     cells.on('click', turnClick);
     gameIsOver = 0;
     $(".end-game").value = "none";
