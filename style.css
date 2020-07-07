@@ -7,7 +7,7 @@ body{
     font-family: 'Oxygen', sans-serif;
 }
 #header-nav{
-    background-color: navy;
+    background-color: rgb(58, 58, 95);
     border-radius: 0;
     border: 0;
 }
@@ -15,14 +15,14 @@ body{
     background: url('Assets/OIP.jpg') no-repeat;
     width: 200px;
     height: 200px;
-    margin : 0 0 0 0; 
+    margin : 2px 2px 2px 2px; 
 }
 .navbar-brand{
     padding-top: 25px;
 }
 .navbar-brand h1{
 font-family: 'Lora', serif;
-color: rgb(64, 88, 141);
+color: rgb(177, 93, 60);
 font-size: 1.5em;
 text-transform: uppercase;
 font-weight: bold;
@@ -88,6 +88,10 @@ h1{
     text-shadow: 1px 1px 1px rgb(209, 179, 179);
     background-image: url('Assets/spaceship-interior-captains-bridge-with-chair-cartoon-style_92863-144.jpg') ;
     background-repeat: no-repeat;
+    -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     ;
 }
 
