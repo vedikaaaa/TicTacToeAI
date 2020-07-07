@@ -11,12 +11,12 @@ body{
     border-radius: 0;
     border: 0;
 }
-#logo-img{
+/* #logo-img{
     background: url('OIP.jpg') no-repeat;
     width: 200px;
     height: 200px;
     margin : 10px 10px 10px 10px; 
-}
+} */
 .navbar-brand{
     padding-top: 25px;
 }
