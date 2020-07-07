@@ -30,6 +30,7 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
+    currentTurn= $("#f1").text;
     cells.on('click', turnClick);
     gameIsOver = 0;
     $(".end-game").value = "none";
@@ -49,6 +50,7 @@ function endGame() {
 
 function turnClick(square) {
     if (typeof(boardGame[square.target.id]) == "number") {
+
         turn(square.target.id, currentTurn);
         if (!checkWin(boardGame, player) && !checkTie()) {
             if (twoPlayers === false) {
