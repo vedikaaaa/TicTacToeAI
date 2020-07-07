@@ -77,6 +77,7 @@ td {
 h1{
   font-size: 2em !important;
   font-family: 'Lora', serif !important;
+  color: antiquewhite;
 }
 
 #panel{
@@ -85,7 +86,7 @@ h1{
 	margin-top: 30px;
     font-size: 30px;
     font-weight: bold;
-    text-decoration-color: rgb(211, 207, 174) !important;
+   
     text-shadow: 1px 1px 1px rgb(82, 25, 25);
     background-image: url('Assets/spaceship-interior-captains-bridge-with-chair-cartoon-style_92863-144.jpg') ;
     background-repeat: no-repeat;
