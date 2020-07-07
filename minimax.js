@@ -69,7 +69,7 @@ function turn(boxId, player) {
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = checkWin(boardGame, player);
-    if (gameFinished) {
+    if (gameFinished||checkTie()) {
         gameOver(gameFinished);
     }
     currentTurn = currentTurn == 'X' ? 'O' : 'X';
