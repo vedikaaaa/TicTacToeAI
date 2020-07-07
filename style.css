@@ -15,7 +15,7 @@ body{
     background: url('Assets/spaceship.png') no-repeat;
     width: 150px;
     height: 150px;
-   
+   margin : 10px 10px 10px 10px;
 }
 .navbar-brand{
     padding-top: 25px;
