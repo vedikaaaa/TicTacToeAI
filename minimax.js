@@ -57,6 +57,7 @@ function turnClick(square) {
                 cells.off('click');
                 setTimeout(function() {
                     currentTurnLabel.text("Is your turn: " + player);
+                    currentTurn=player;
                     cells.on('click', turnClick);
                     turn(bestChoice(), player_2);
                 }, 700);
