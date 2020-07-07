@@ -71,6 +71,7 @@ td {
   display:none;
   opacity: 0;
   padding-top: 25px;
+  color: rgb(228, 204, 173) !important;
 }
 
 h1{
