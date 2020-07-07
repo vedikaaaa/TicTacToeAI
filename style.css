@@ -103,6 +103,7 @@ h1{
 
 #new-game{
   margin-top: 30px;
+  color: rgb(228, 204, 173) !important;
 }
 
 .players, .players:link, .players:visited{
