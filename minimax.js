@@ -72,6 +72,7 @@ function turn(boxId, player) {
     if (gameFinished||checkTie()) {
         gameOver(gameFinished);
     }
+    
     currentTurn = currentTurn == 'X' ? 'O' : 'X';
 }
 
@@ -186,6 +187,7 @@ function checkTie() {
 	        opacity: '0.4'
 	    });
         currentTurnLabel.text("TIE GAME!");
+        currentTurn = currentTurn == 'X' ? 'O' : 'X';
         return true;
     }
     return false;
