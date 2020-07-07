@@ -216,7 +216,7 @@ function cleanBoard() {
 }
 
 function changeFigures() {
-    if (gameIsOver === 1||twoPlayers==true) {
+    if (gameIsOver === 1&&twoPlayers==true) {
         currentTurn = currentTurn == player ? player_2 : player;
         player = player == 'X' ? 'O' : 'X';
         player_2 = player_2 == 'X' ? 'O' : 'X';
