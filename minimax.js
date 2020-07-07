@@ -31,6 +31,7 @@ function startGame() {
         opacity: "1"
     });
 player=currentTurn;
+
     cells.on('click', turnClick);
     gameIsOver = 0;
     $(".end-game").value = "none";
@@ -215,7 +216,7 @@ function cleanBoard() {
 }
 
 function changeFigures() {
-    if (gameIsOver === 1) {
+    if (gameIsOver === 1||twoPlayers==true) {
         currentTurn = currentTurn == player ? player_2 : player;
         player = player == 'X' ? 'O' : 'X';
         player_2 = player_2 == 'X' ? 'O' : 'X';
