@@ -42,7 +42,7 @@ table {
   background-color: midnightblue ;
 
   padding: 20px ;
-  font-family: 'VT323', monospace;
+  font-family: 'Lora', serif;
   opacity: 0.4;
 }
 
@@ -64,7 +64,7 @@ td {
   background-color: #A5D6A7 ;
   padding: 8px 10px 8px 10px;
   font-size: 30px;
-  font-family: 'VT323', monospace !important;
+  font-family: 'Lora', serif !important;
   font-size: 35px !important;
 }
 
@@ -76,7 +76,7 @@ td {
 
 h1{
   font-size: 2em !important;
-  font-family: 'VT323', monospace !important;
+  font-family: 'Lora', serif !important;
 }
 
 #panel{
