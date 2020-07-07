@@ -80,10 +80,12 @@ h1{
 }
 
 #panel{
+    
     position: absolute;
 	margin-top: 30px;
     font-size: 30px;
-    
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #222;
     background-image: url('Assets/spaceship-interior-captains-bridge-with-chair-cartoon-style_92863-144.jpg') ;
     background-repeat: no-repeat;
     ;
