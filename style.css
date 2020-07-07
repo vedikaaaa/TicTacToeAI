@@ -12,9 +12,9 @@ body{
     border: 0;
 }
 #logo-img{
-    background: url('mission-to-mars-patch-vector.png') no-repeat;
-    width: 500px;
-    height: 500px;
+    background: url('OIP.jpg') no-repeat;
+    width: 200px;
+    height: 200px;
    /* margin : 10px 10px 10px 10px; */
 }
 .navbar-brand{
