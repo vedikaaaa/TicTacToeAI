@@ -35,7 +35,7 @@ player=player;
 currentTurn= player;
 currentTurnLabel = $("#currentTurn");
 $("#f1").text(currentTurn);
-$("#f2").text("O");
+$("#f2").text(currentTurn=='X'?"O":"X");
 }
 currentTurnLabel = $("#currentTurn");
 
