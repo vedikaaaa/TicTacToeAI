@@ -30,12 +30,12 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
-
+if(twoPlayers==false){
 player=player;
 currentTurn= player;
 currentTurnLabel = $("#currentTurn");
 $("#f1").text("X");
-$("#f2").text("O");
+$("#f2").text("O");}
 
 
 
