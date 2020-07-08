@@ -37,7 +37,7 @@ currentTurnLabel = $("#currentTurn");
 $("#f1").text("X");
 $("#f2").text("O");
 }
-
+currentTurnLabel = $("#currentTurn");
 
 
     cells.on('click', turnClick);
