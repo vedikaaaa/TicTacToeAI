@@ -34,7 +34,7 @@ if(twoPlayers==false){
 player=player;
 currentTurn= player;
 currentTurnLabel = $("#currentTurn");
-$("#f1").text("X");
+$("#f1").text(currentTurn);
 $("#f2").text("O");
 }
 currentTurnLabel = $("#currentTurn");
