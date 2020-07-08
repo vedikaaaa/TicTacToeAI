@@ -1,13 +1,13 @@
 var boardGame;
-var currentTurnLabel = $("#currentTurn");
-var twoPlayers = false;
+var PresentPlayTag = $("#PresentTurn");
+var MultiPlayer = false;
 var player = 'X';
 var player_2 = 'O';
-var currentTurn = player;
-var gameIsOver = 1;
+var PresentTurn = player;
+var EndOfGame = 1;
 var alpha =Number.MIN_SAFE_INTEGER;
 var beta =Number.MAX_SAFE_INTEGER;
-const winCombos = [
+const WinningCombs = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -30,44 +30,44 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
-if(twoPlayers==false){
+if(MultiPlayer==false){
 player=player;
-currentTurn= player;
-currentTurnLabel = $("#currentTurn");
-$("#f1").text(currentTurn);
-$("#f2").text(currentTurn=='X'?"O":"X");
+PresentTurn= player;
+PresentPlayTag = $("#PresentTurn");
+$("#f1").text(PresentTurn);
+$("#f2").text(PresentTurn=='X'?"O":"X");
 }
-currentTurnLabel = $("#currentTurn");
+PresentPlayTag = $("#PresentTurn");
 
 
-    cells.on('click', turnClick);
-    gameIsOver = 0;
+    cells.on('click', PresentTurnClick);
+    EndOfGame = 0;
     $(".end-game").value = "none";
     boardGame = Array.from(Array(9).keys());
-    cleanBoard();
+    ClearTicTacToe();
 }
 
 function endGame() {
     $("table").animate({
         opacity: "0.4"
     });
-    gameIsOver = 1;
-    cleanBoard();
-    currentTurnLabel.text("- - - - - - - -");
+    EndOfGame = 1;
+    ClearTicTacToe();
+    PresentPlayTag.text("- - - - - - - -");
     cells.off('click');
 }
 
-function turnClick(square) {
+function PresentTurnClick(square) {
     if (typeof(boardGame[square.target.id]) == "number") {
 
-        turn(square.target.id, currentTurn);
+        turn(square.target.id, PresentTurn);
         if (!checkWin(boardGame, player) && !checkTie()) {
-            if (twoPlayers === false) {
+            if (MultiPlayer === false) {
                 cells.off('click');
                 setTimeout(function() {
-                    currentTurnLabel.text("Is your turn " );
+                    PresentPlayTag.text("Is your turn " );
                     
-                    cells.on('click', turnClick);
+                    cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
                 }, 700);
             }
@@ -77,7 +77,7 @@ function turnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
-    currentTurnLabel.text("Is your turn: "+currentPlayer );
+    PresentPlayTag.text("Is your turn: "+currentPlayer );
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = checkWin(boardGame, player)||checkTie();
@@ -85,11 +85,11 @@ function turn(boxId, player) {
         gameOver(gameFinished);
     }
     
-    currentTurn = currentTurn == 'X' ? 'O' : 'X';
+    PresentTurn = PresentTurn == 'X' ? 'O' : 'X';
 }
 
-function miniMax(newGameBoard, currentPlayer, alpha, beta) {
-    var availableMoves = getAvailableMoves();
+function MinMax(newGameBoard, currentPlayer, alpha, beta) {
+    var availableMoves = AvailableMoves();
 
     if (checkWin(newGameBoard, player)) {
         return {
@@ -112,10 +112,10 @@ function miniMax(newGameBoard, currentPlayer, alpha, beta) {
         newGameBoard[availableMoves[i]] = currentPlayer;
 
         if (currentPlayer == player_2) {
-            var maxScoreIndex = miniMax(newGameBoard, player,alpha,beta);
+            var maxScoreIndex = MinMax(newGameBoard, player,alpha,beta);
             move.score = maxScoreIndex.score;
         } else {
-            var maxScoreIndex = miniMax(newGameBoard, player_2,alpha,beta);
+            var maxScoreIndex = MinMax(newGameBoard, player_2,alpha,beta);
             move.score = maxScoreIndex.score;
         }
 
@@ -159,7 +159,7 @@ function checkWin(board, player) {
     let plays = board.reduce(
         (acc, elem, index) => (elem === player) ? acc.concat(index) : acc, []);
     let gameFinished = null;
-    for (let [index, win] of winCombos.entries()) {
+    for (let [index, win] of WinningCombs.entries()) {
         if (win.every(elem => plays.indexOf(elem) > -1)) {
             gameFinished = {
                 index: index,
@@ -172,33 +172,33 @@ function checkWin(board, player) {
 }
 
 function gameOver(gameFinished) {
-    gameIsOver = 1;
+    EndOfGame = 1;
     cells.off('click');
     cells.animate({
         opacity: '0.4'
     });
-    for (let index of winCombos[gameFinished.index]) {
+    for (let index of WinningCombs[gameFinished.index]) {
         setTimeout(function() {
             $("#" + index).css("background-color", "green");
             $("#" + index).animate({
                 opacity: '1'
             });
-            $("#currentTurn").text(gameFinished.player + " WIN");
+            $("#PresentTurn").text(gameFinished.player + " WIN");
         }, 500);
     }
 }
 
-function getAvailableMoves() {
+function AvailableMoves() {
     return boardGame.filter(s => typeof s == 'number');
 }
 
 function checkTie() {
-    if (getAvailableMoves().length === 0) {gameIsOver = 1;
+    if (AvailableMoves().length === 0) {EndOfGame = 1;
 	    cells.off('click');
 	    cells.animate({
 	        opacity: '0.4'
 	    });
-        currentTurnLabel.text("TIE GAME!");
+        PresentPlayTag.text("TIE GAME!");
         
         return true;
     }
@@ -206,10 +206,10 @@ function checkTie() {
 }
 
 function bestChoice() {
-    return miniMax(boardGame, player_2,alpha,beta).index;
+    return MinMax(boardGame, player_2,alpha,beta).index;
 }
 
-function cleanBoard() {
+function ClearTicTacToe() {
     for (var i = 0; i < cells.length; i++) {
         $("#" + i).text("");
     }
@@ -218,14 +218,14 @@ function cleanBoard() {
         cells[i].value = '';
         cells[i].style.removeProperty('background-color');
         cells[i].style.removeProperty('opacity');
-        cells.on('click', turnClick);
+        cells.on('click', PresentTurnClick);
     }
-    currentTurnLabel.text("Is your turn: " + player);
+    PresentPlayTag.text("Is your turn: " + player);
 }
 
-function changeFigures() {
-    if (gameIsOver === 1&&twoPlayers==true) {
-        currentTurn = currentTurn == player ? player_2 : player;
+function ReverseIt() {
+    if (EndOfGame === 1&&MultiPlayer==true) {
+        PresentTurn = PresentTurn == player ? player_2 : player;
         player = player == 'X' ? 'O' : 'X';
         player_2 = player_2 == 'X' ? 'O' : 'X';
         currentFigureP1 = $("#f1").text();
@@ -248,9 +248,9 @@ function changeFigures() {
     }
 }
 
-function activeTwoPlayers() {
-    if (gameIsOver === 1) {
-        if (twoPlayers) {
+function activeMultiPlayer() {
+    if (EndOfGame === 1) {
+        if (MultiPlayer) {
             $("#p2").animate({
                 opacity: "0.3"
             });
@@ -259,6 +259,6 @@ function activeTwoPlayers() {
                 opacity: "1"
             });
         }
-        twoPlayers = twoPlayers == true ? false : true;
+        MultiPlayer = MultiPlayer == true ? false : true;
     }
 }
