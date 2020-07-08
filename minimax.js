@@ -77,7 +77,7 @@ function turnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
-    currentTurnLabel.text("Is your turn " );
+    currentTurnLabel.text("Is your turn: "+currentPlayer );
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = checkWin(boardGame, player)||checkTie();
