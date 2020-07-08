@@ -35,7 +35,8 @@ player=player;
 currentTurn= player;
 currentTurnLabel = $("#currentTurn");
 $("#f1").text("X");
-$("#f2").text("O");}
+$("#f2").text("O");
+}
 
 
 
@@ -64,7 +65,7 @@ function turnClick(square) {
             if (twoPlayers === false) {
                 cells.off('click');
                 setTimeout(function() {
-                    currentTurnLabel.text("Is your turn: " + currentTurn);
+                    currentTurnLabel.text("Is your turn " );
                     
                     cells.on('click', turnClick);
                     turn(bestChoice(), player_2);
@@ -76,7 +77,7 @@ function turnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
-    currentTurnLabel.text("Is your turn: " + currentPlayer);
+    currentTurnLabel.text("Is your turn " );
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = checkWin(boardGame, player)||checkTie();
