@@ -162,7 +162,7 @@ h2 {
     font-size: 16px;
     cursor: pointer;
     float: left;
-    left: 26%;
+    left: 24%;
     position: relative;
 }
 
@@ -184,8 +184,4 @@ h2 {
 
 .noHover {
     pointer-events: none;
-}
-
-.tick {
-    border: 2px solid black;
 }
