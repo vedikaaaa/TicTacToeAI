@@ -64,7 +64,7 @@ function turnClick(square) {
             if (twoPlayers === false) {
                 cells.off('click');
                 setTimeout(function() {
-                    currentTurnLabel.text("Is your turn: " + player);
+                    currentTurnLabel.text("Is your turn: " + currentTurn);
                     
                     cells.on('click', turnClick);
                     turn(bestChoice(), player_2);
