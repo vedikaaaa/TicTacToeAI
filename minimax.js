@@ -31,9 +31,7 @@ function startGame() {
         opacity: "1"
     });
 player=currentTurn;
-if(!twoPlayers){
-    player = currentTurn = $("f1").text ;
-}
+
     cells.on('click', turnClick);
     gameIsOver = 0;
     $(".end-game").value = "none";
