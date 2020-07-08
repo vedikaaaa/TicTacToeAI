@@ -30,10 +30,15 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
-player=currentTurn;
-if(!twoPlayers){
-    player = currentTurn = $("f1").text() ;
-}
+
+player=player;
+currentTurn= player;
+currentTurnLabel = $("#currentTurn");
+$("#f1").text("X");
+$("#f2").text("O");
+
+
+
     cells.on('click', turnClick);
     gameIsOver = 0;
     $(".end-game").value = "none";
