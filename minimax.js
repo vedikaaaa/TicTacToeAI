@@ -12,10 +12,6 @@ const WinningCombs = [
     [3, 4, 5],
     [6, 7, 8],
 
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-
     [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
@@ -61,12 +57,11 @@ function PresentTurnClick(square) {
     if (typeof(boardGame[square.target.id]) == "number") {
 
         turn(square.target.id, PresentTurn);
-        if (!checkWin(boardGame, player) && !checkTie()) {
+        if (!CheckForWin(boardGame, player) && !CheckForTie()) {
             if (MultiPlayer === false) {
                 cells.off('click');
                 setTimeout(function() {
-                    PresentPlayTag.text("Is your turn " );
-                    
+                    PresentPlayTag.text("You Play Next: " );
                     cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
                 }, 700);
@@ -77,10 +72,10 @@ function PresentTurnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
-    PresentPlayTag.text("Is your turn: "+currentPlayer );
+    PresentPlayTag.text("You Play Next: "+currentPlayer );
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
-    let gameFinished = checkWin(boardGame, player)||checkTie();
+    let gameFinished = CheckForWin(boardGame, player)||CheckForTie();
     if (gameFinished) {
         gameOver(gameFinished);
     }
@@ -88,14 +83,14 @@ function turn(boxId, player) {
     PresentTurn = PresentTurn == 'X' ? 'O' : 'X';
 }
 
-function MinMax(newGameBoard, currentPlayer, alpha, beta) {
+function MinMax(PresentGameBoard, currentPlayer, alpha, beta) {
     var availableMoves = AvailableMoves();
 
-    if (checkWin(newGameBoard, player)) {
+    if (CheckForWin(PresentGameBoard, player)) {
         return {
             score: -10
         };
-    } else if (checkWin(newGameBoard, player_2)) {
+    } else if (CheckForWin(PresentGameBoard, player_2)) {
         return {
             score: 10
         };
@@ -108,18 +103,18 @@ function MinMax(newGameBoard, currentPlayer, alpha, beta) {
     var moves = [];
     for (var i = 0; i < availableMoves.length; i++) {
         var move = {};
-        move.index = newGameBoard[availableMoves[i]];
-        newGameBoard[availableMoves[i]] = currentPlayer;
+        move.index = PresentGameBoard[availableMoves[i]];
+        PresentGameBoard[availableMoves[i]] = currentPlayer;
 
         if (currentPlayer == player_2) {
-            var maxScoreIndex = MinMax(newGameBoard, player,alpha,beta);
+            var maxScoreIndex = MinMax(PresentGameBoard, player,alpha,beta);
             move.score = maxScoreIndex.score;
         } else {
-            var maxScoreIndex = MinMax(newGameBoard, player_2,alpha,beta);
+            var maxScoreIndex = MinMax(PresentGameBoard, player_2,alpha,beta);
             move.score = maxScoreIndex.score;
         }
 
-        newGameBoard[availableMoves[i]] = move.index;
+        PresentGameBoard[availableMoves[i]] = move.index;
 
         moves.push(move);
     }
@@ -155,7 +150,7 @@ function MinMax(newGameBoard, currentPlayer, alpha, beta) {
     return moves[bestChoice];
 }
 
-function checkWin(board, player) {
+function CheckForWin(board, player) {
     let plays = board.reduce(
         (acc, elem, index) => (elem === player) ? acc.concat(index) : acc, []);
     let gameFinished = null;
@@ -192,7 +187,7 @@ function AvailableMoves() {
     return boardGame.filter(s => typeof s == 'number');
 }
 
-function checkTie() {
+function CheckForTie() {
     if (AvailableMoves().length === 0) {EndOfGame = 1;
 	    cells.off('click');
 	    cells.animate({
@@ -220,7 +215,7 @@ function ClearTicTacToe() {
         cells[i].style.removeProperty('opacity');
         cells.on('click', PresentTurnClick);
     }
-    PresentPlayTag.text("Is your turn: " + player);
+    PresentPlayTag.text("You Play Next: " + player);
 }
 
 function ReverseIt() {
@@ -228,7 +223,7 @@ function ReverseIt() {
         PresentTurn = PresentTurn == player ? player_2 : player;
         player = player == 'X' ? 'O' : 'X';
         player_2 = player_2 == 'X' ? 'O' : 'X';
-        currentFigureP1 = $("#f1").text();
+        PresentFigureCh = $("#f1").text();
         $("#f1").animate({
             opacity: "0"
         });
@@ -236,8 +231,8 @@ function ReverseIt() {
             opacity: "0"
         });
         setTimeout(function() {
-            $("#f1").text(currentFigureP1 = currentFigureP1 == 'X' ? 'O' : 'X');
-            $("#f2").text(currentFigureP1 = currentFigureP1 == 'X' ? 'O' : 'X');
+            $("#f1").text(PresentFigureCh = PresentFigureCh == 'X' ? 'O' : 'X');
+            $("#f2").text(PresentFigureCh = PresentFigureCh == 'X' ? 'O' : 'X');
         }, 500);
         $("#f1").animate({
             opacity: "1"
