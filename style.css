@@ -79,6 +79,11 @@ h1{
   font-family: 'Lora', serif !important;
   color: rgb(228, 204, 173) !important;
 }
+h2{
+    font-size: 2em !important;
+    font-family: 'Lora', serif !important;
+    color: rgb(228, 204, 173) !important;
+}
 
 #panel{
     
@@ -119,7 +124,7 @@ h1{
 	border-radius: 50% !important;
 	width: 50px;
     height: 50px;
-    background-color: black;
+    ;
 	margin-right: 3,0px;
   cursor: pointer;
 }
