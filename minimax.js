@@ -46,6 +46,8 @@ $('.button').on('click', function() {
 });
 
 function startGame() {
+    maxDepth = 10;
+    $('.button').css('color', 'white')
     $("table").animate({
         opacity: "1"
     });
