@@ -100,7 +100,7 @@ function PresentTurnClick(square) {
                 if(currentPlayer!=player_2)
                 setTimeout(function() {
                     
-                    suggestions(bestChoice(), currentPlayer);
+                    suggestions(bestChoice(), player);
                     
                 }, 2000);
             }
@@ -247,7 +247,7 @@ function CheckForTie() {
 }
 
 function bestChoice() {
-    return MinMax(boardGame, player_2, alpha, beta, 0).index;
+    return MinMax(boardGame, currentPlayer, alpha, beta, 0).index;
 }
 
 function ClearTicTacToe() {
@@ -304,14 +304,14 @@ function activeMultiPlayer() {
     }
 }
 function suggestions(boxId,player){
-    if(currentPlayer!=player_2&&maxDepth>3){
+    // if(currentPlayer!=player_2&&maxDepth>3){
         // setTimeout(function() {
         //     PresentPlayTag.text("Your Turn : ");
         //     cells.on('click', PresentTurnClick);
         //     turn(bestChoice(), currentPlayer);
         // }, 2000)
         $("#" + boxId).animate({
-            opacity:"0.9"
+            opacity:"0.3"
         });
-    }
+    // }
 }
