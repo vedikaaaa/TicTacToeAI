@@ -104,7 +104,7 @@ function PresentTurnClick(square) {
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
 
-        PresentPlayTag.text("You Play Next: " + currentPlayer);
+    PresentPlayTag.text("You Play Next: " + currentPlayer);
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = CheckForWin(boardGame, player) || CheckForTie();
@@ -212,7 +212,7 @@ function gameOver(gameFinished) {
                 opacity: '1'
             });
             $("#PresentTurn").text(gameFinished.player + " WIN");
-        }, 500);
+        }, 700);
     }
 }
 
