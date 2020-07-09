@@ -211,7 +211,7 @@ function gameOver(gameFinished) {
             $("#" + index).animate({
                 opacity: '1'
             });
-            $("#PresentTurn").text(gameFinished.player + " WIN");
+            $("#PresentTurn").text(gameFinished.player + " WINS");
         }, 700);
     }
 }
