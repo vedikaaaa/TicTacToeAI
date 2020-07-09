@@ -114,11 +114,7 @@ function turn(boxId, player) {
             PresentPlayTag.text("AI's turn " + currentPlayer);
     } else PresentPlayTag.text("You Play Next: " + currentPlayer);
     if(currentPlayer!=player_2)
-    setTimeout(function() {
-                    
-        suggestions(bestChoice(), currentPlayer);
-        
-    }, 2000);
+   
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = CheckForWin(boardGame, player) || CheckForTie();
@@ -304,11 +300,4 @@ function activeMultiPlayer() {
         }
         MultiPlayer = MultiPlayer == true ? false : true;
     }
-}
-function suggestions(boxId,player){
-    
-        boardGame[boxId].animate({
-            opacity:"0.3"
-        });
-    
 }
