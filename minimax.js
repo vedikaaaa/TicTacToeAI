@@ -95,7 +95,7 @@ function PresentTurnClick(square) {
                     PresentPlayTag.text("Your Turn : ");
                     cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
-                }, 400);
+                }, 700);
             }
         }
     }
@@ -103,8 +103,13 @@ function PresentTurnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
+    if (MultiPlayer == false) {
+        if (currentPlayer == 'X')
+            PresentPlayTag.text("You Play Next: " + currentPlayer);
+        else
 
-    PresentPlayTag.text("You Play Next: " + currentPlayer);
+            PresentPlayTag.text("AI's turn " + currentPlayer);
+    } else PresentPlayTag.text("You Play Next: " + currentPlayer);
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = CheckForWin(boardGame, player) || CheckForTie();
@@ -212,7 +217,7 @@ function gameOver(gameFinished) {
                 opacity: '1'
             });
             $("#PresentTurn").text(gameFinished.player + " WIN");
-        }, 700);
+        }, 500);
     }
 }
 
