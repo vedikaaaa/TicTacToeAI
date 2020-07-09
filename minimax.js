@@ -216,13 +216,8 @@ function gameOver(gameFinished) {
             $("#" + index).animate({
                 opacity: '1'
             });
-<<<<<<< HEAD
-            $("#PresentTurn").text(gameFinished.player + " WINS");
-        }, 700);
-=======
             $("#PresentTurn").text(gameFinished.player + " WIN");
         }, 500);
->>>>>>> f5277a6bc9000ce57821c087131fd4c3312b8f20
     }
 }
 
