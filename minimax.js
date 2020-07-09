@@ -103,7 +103,7 @@ function PresentTurnClick(square) {
 
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
-    if (currentPlayer == 'X')
+    // if (currentPlayer == 'X')
         PresentPlayTag.text("You Play Next: " + currentPlayer);
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
