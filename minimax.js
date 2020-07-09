@@ -41,7 +41,7 @@ function SetLevelInf() {
 }
 $('.button').on('click', function() {
     $(".btn-group").addClass('noHover');
-    $(this).css('color', 'red');
+    $(this).css('color', '#723267');
 
 });
 
