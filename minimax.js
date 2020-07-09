@@ -95,10 +95,7 @@ function PresentTurnClick(square) {
                     PresentPlayTag.text("Your Turn : ");
                     cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
-                    
                 }, 700);
-                
-               
             }
         }
     }
@@ -113,8 +110,6 @@ function turn(boxId, player) {
 
             PresentPlayTag.text("AI's turn " + currentPlayer);
     } else PresentPlayTag.text("You Play Next: " + currentPlayer);
-    if(currentPlayer!=player_2)
-   
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
     let gameFinished = CheckForWin(boardGame, player) || CheckForTie();
@@ -245,7 +240,7 @@ function CheckForTie() {
 }
 
 function bestChoice() {
-    return MinMax(boardGame, currentPlayer, alpha, beta, 0).index;
+    return MinMax(boardGame, player_2, alpha, beta, 0).index;
 }
 
 function ClearTicTacToe() {
