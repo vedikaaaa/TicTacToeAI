@@ -104,7 +104,7 @@ function PresentTurnClick(square) {
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
     if (MultiPlayer == false) {
-        if (currentPlayer == player)
+        if (currentPlayer != player_2)
             PresentPlayTag.text("You Play Next: " + currentPlayer);
         else
 
