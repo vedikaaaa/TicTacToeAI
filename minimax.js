@@ -95,7 +95,14 @@ function PresentTurnClick(square) {
                     PresentPlayTag.text("Your Turn : ");
                     cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
+                    
                 }, 700);
+                if(currentPlayer!=player_2)
+                setTimeout(function() {
+                    
+                    suggestions(bestChoice(), currentPlayer);
+                    
+                }, 2000);
             }
         }
     }
@@ -294,5 +301,17 @@ function activeMultiPlayer() {
             });
         }
         MultiPlayer = MultiPlayer == true ? false : true;
+    }
+}
+function suggestions(boxId,player){
+    if(currentPlayer!=player_2&&maxDepth>3){
+        // setTimeout(function() {
+        //     PresentPlayTag.text("Your Turn : ");
+        //     cells.on('click', PresentTurnClick);
+        //     turn(bestChoice(), currentPlayer);
+        // }, 2000)
+        $("#" + boxId).animate({
+            opacity:"0.9"
+        });
     }
 }
