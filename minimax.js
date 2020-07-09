@@ -104,7 +104,7 @@ function PresentTurnClick(square) {
 function turn(boxId, player) {
     currentPlayer = player == 'X' ? 'O' : 'X';
     if (MultiPlayer == false) {
-        if (currentPlayer == 'X')
+        if (currentPlayer == player)
             PresentPlayTag.text("You Play Next: " + currentPlayer);
         else
 
@@ -216,7 +216,7 @@ function gameOver(gameFinished) {
             $("#" + index).animate({
                 opacity: '1'
             });
-            $("#PresentTurn").text(gameFinished.player + " WIN");
+            $("#PresentTurn").text(gameFinished.player + " WINS");
         }, 500);
     }
 }
