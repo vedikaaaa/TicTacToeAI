@@ -179,7 +179,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 bestChoice = i;
 
             }
-            return {score:bestScore,index:maxScoreIndex};
+            return {score:bestScore,index:bestScore.index};
         // }
     } else {
        
@@ -200,7 +200,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 }
     
                 bestChoice = i;
-            }return {score:bestScore,index:maxScoreIndex};
+            }return {score:bestScore,index:bestScore.index};
         }
         // }
     
