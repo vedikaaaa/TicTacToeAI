@@ -156,7 +156,10 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
     //     moves.push(move);
     // }
 
-    var bestChoice;
+    var bestChoice={
+        score,
+        index
+    };
     if (currentPlayer === player_2) {
         for (var i = 0; i < availableMoves.length; i++) {
             var move = {};
@@ -176,10 +179,11 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 if (beta <= alpha){
                     break;
                 }
-                bestChoice = i;
+                bestChoice.score=bestScore;
+                bestChoice.index=move.index;
 
             }
-            return {score:bestScore,index:availableMoves[bestChoice]};
+            // return {score:bestScore,index:availableMoves[bestChoice]};
         // }
     } else {
        
@@ -199,13 +203,15 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                   break;
                 }
     
-                bestChoice = i;
-            }return {score:bestScore,index:availableMoves[bestChoice]};
+                bestChoice.score=bestScore;
+                bestChoice.index=move.index;
+            }
+            // return {score:bestScore,index:availableMoves[bestChoice]};
         }
         // }
     
 
-    // return moves[bestChoice];
+    return bestChoice;
 }
 
 function CheckForWin(board, player) {
