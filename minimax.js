@@ -137,25 +137,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
         };
     }
 
-    var moves = [];
-    // for (var i = 0; i < availableMoves.length; i++) {
-    //     var move = {};
-    //     move.index = PresentGameBoard[availableMoves[i]];
-    //     PresentGameBoard[availableMoves[i]] = currentPlayer;
-
-    //     if (currentPlayer == player_2) {
-    //         var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
-    //         move.score = maxScoreIndex.score;
-    //     } else {
-    //         var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
-    //         move.score = maxScoreIndex.score;
-    //     }
-
-    //     PresentGameBoard[availableMoves[i]] = move.index;
-
-    //     moves.push(move);
-    // }
-
+    
     var bestChoice={
         score,
         index
@@ -168,23 +150,20 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
         var bestScore = -10000;
         var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
             move.score = maxScoreIndex.score;
-        // for (var i = 0; i < moves.length; i++) {
+    
             if (move.score > bestScore) {
                 bestScore = move.score;}
             
                 alpha = Math.max(bestScore,alpha);
 
-                // if (alpha < bestScore)
-                //     alpha = bestScore;
                 if (beta <= alpha){
                     break;
                 }
                 bestChoice.score=bestScore;
-                bestChoice.index=move.index;
+                bestChoice.index=move.bestScore.index;
 
             }
-            // return {score:bestScore,index:availableMoves[bestChoice]};
-        // }
+           
     } else {
        
         
@@ -195,7 +174,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
             var bestScore = 10000;
             var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
             move.score = maxScoreIndex.score;
-            // for (var i = 0; i < moves.length; i++) {
+           
             if (move.score < bestScore) {
                 bestScore = move.score;}
                 beta = Math.min(beta, score);
@@ -204,11 +183,11 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 }
     
                 bestChoice.score=bestScore;
-                bestChoice.index=move.index;
+                bestChoice.index=move.bestScore.index;
             }
-            // return {score:bestScore,index:availableMoves[bestChoice]};
+           
         }
-        // }
+       
     
 
     return bestChoice;
