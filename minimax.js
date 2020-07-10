@@ -137,11 +137,11 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
         };
     }
 
-    // var moves = [];
-    // for (var i = 0; i < availableMoves.length; i++) {
-    //     var move = {};
-    //     move.index = PresentGameBoard[availableMoves[i]];
-    //     PresentGameBoard[availableMoves[i]] = currentPlayer;
+    var moves = [];
+    for (var i = 0; i < availableMoves.length; i++) {
+        var move = {};
+        move.index = PresentGameBoard[availableMoves[i]];
+        PresentGameBoard[availableMoves[i]] = currentPlayer;
 
         // if (currentPlayer == player_2) {
         //     var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
@@ -195,6 +195,11 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 return moves[bestChoice];
             // }
         // }
+    }
+    
+        PresentGameBoard[availableMoves[i]] = move.index;
+
+        moves.push(move);
     }
 
     // return moves[bestChoice];
