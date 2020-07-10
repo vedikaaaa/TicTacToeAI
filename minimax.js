@@ -139,28 +139,33 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
 
     
     var bestChoice={
-        score,
-        index
+        score:0,
+        index:0
     };
     if (currentPlayer === player_2) {
         for (var i = 0; i < availableMoves.length; i++) {
             var move = {};
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
-        var bestScore = -10000;
-        var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
+        var bestScore ={
+            score:-10000,
+            index:this.index
+        } ;
+        var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1).index;
             move.score = maxScoreIndex.score;
     
             if (move.score > bestScore) {
-                bestScore = move.score;}
+                bestScore.score = move.score;
+            bestScore.index=move.index;}
             
                 alpha = Math.max(bestScore,alpha);
 
                 if (beta <= alpha){
                     break;
                 }
-                bestChoice.score=bestScore;
-                bestChoice.index=move.bestScore.index;
+                bestChoice.score=bestScore.score;
+                bestChoice.index=bestScore.index;
+                return bestChoice;
 
             }
            
@@ -171,26 +176,32 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 var move = {};
             move.index = PresentGameBoard[availableMoves[i]];
             PresentGameBoard[availableMoves[i]] = currentPlayer;
-            var bestScore = 10000;
-            var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
+            // var bestScore = 10000;
+            var bestScore ={
+                score:10000,
+                index:this.index
+            } ;
+            var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1).index;
             move.score = maxScoreIndex.score;
            
             if (move.score < bestScore) {
-                bestScore = move.score;}
+                bestScore.score = move.score;
+            bestScore.index=move.index;}
                 beta = Math.min(beta, score);
                 if (beta <= alpha) {
                   break;
                 }
     
-                bestChoice.score=bestScore;
-                bestChoice.index=move.bestScore.index;
+                bestChoice.score=bestScore.score;
+                bestChoice.index=bestScore.index;
+                return bestChoice;
             }
            
         }
        
     
 
-    return bestChoice;
+    // return bestChoice;
 }
 
 function CheckForWin(board, player) {
