@@ -141,10 +141,10 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
     var bestChoice={
         score:0,
         index:0
-    };
+    };var move = {};
     if (currentPlayer === player_2) {
         for (var i = 0; i < availableMoves.length; i++) {
-            var move = {};
+            
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
         PresentGameBoard[availableMoves[i]] = move.index;
@@ -168,7 +168,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 bestChoice.index=bestScore.index;
                 return bestChoice;
 
-            }
+            }return move;
            
     } else {
        
