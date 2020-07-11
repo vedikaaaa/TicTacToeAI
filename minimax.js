@@ -154,7 +154,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
         } ;
         var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
             move.score = maxScoreIndex.score;
-            PresentGameBoard[availableMoves[i]] = move.index;
+            // PresentGameBoard[availableMoves[i]] = move.index;
             if (move.score > bestScore.score) {
                 bestScore.score = move.score;
                 bestScore.index=move.index;
@@ -165,6 +165,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 if (beta <= alpha){
                     break;
                 }
+                PresentGameBoard[availableMoves[i]] = bestChoice.index;
                 bestChoice.score=bestScore.score;
                 bestChoice.index=bestScore.index;
                 return bestChoice;
@@ -186,7 +187,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
             } ;
             var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
             move.score = maxScoreIndex.score;
-            PresentGameBoard[availableMoves[i]] = move.index;
+            // PresentGameBoard[availableMoves[i]] = move.index;
             if (move.score < bestScore.score) {
                 bestScore.score = move.score;
                 bestScore.index=move.index;
@@ -195,7 +196,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 if (beta <= alpha) {
                   break;
                 }
-    
+                PresentGameBoard[availableMoves[i]] = bestChoice.index;
                 bestChoice.score=bestScore.score;
                 bestChoice.index=bestScore.index;
                 return bestChoice;
