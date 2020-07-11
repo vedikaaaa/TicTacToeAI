@@ -144,14 +144,17 @@ var move;
         for (let i = 0; i < availableMoves; i++) {
          
             // if (PresentGameBoard[i][j] == "EMPTY") {
-              PresentGameBoard[i][j] = currentPlayer;
+            //   PresentGameBoard[i][j] = currentPlayer;
+            move.index=PresentGameBoard[availableMoves[i]];
+            PresentGameBoard[availableMoves[i]] = currentPlayer;
             //   this.turn++;
               let score = this.minimax(PresentGameBoard, player, alpha, beta, depth+1);
-              PresentGameBoard[i][j] = "EMPTY";
+            //   PresentGameBoard[i][j] = "EMPTY";
+            PresentGameBoard[availableMoves[i]] = move.index;
             //   this.turn--;
               if (score > bestScore) {
                 bestScore = score;
-                move = { i, j };
+                move.score=score;
               }
               alpha = Math.max(alpha, score);
               if (beta <= alpha) {
@@ -169,10 +172,13 @@ var move;
         for (let i = 0; i < availableMoves; i++) {
          
             // if (PresentGameBoard[i][j] == "EMPTY") {
-              PresentGameBoard[i][j] = currentPlayer;
+            //   PresentGameBoard[i][j] = currentPlayer;
+            move.index=PresentGameBoard[availableMoves[i]];
+            PresentGameBoard[availableMoves[i]] = currentPlayer;
             //   this.turn++;
               let score = this.minimax(PresentGameBoard, player_2, alpha, beta, depth+1);
-              board[i][j] = "EMPTY";
+            //   board[i][j] = "EMPTY";
+            PresentGameBoard[availableMoves[i]] = move.index;
             //   this.turn--;
               bestScore = Math.min(bestScore, score);
               beta = Math.min(beta, score);
