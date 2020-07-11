@@ -139,7 +139,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
             index:this.index
         };
     }
-if(currentPlayer==player_2){
+if(currentPlayer!=player_2){
     var bestChoice={
         score:-100000,
         index:0
