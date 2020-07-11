@@ -148,8 +148,8 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
             move.score = maxScoreIndex.score;
             if (alpha < maxScoreIndex.score)
             alpha = maxScoreIndex.score;
-        if (beta <= alpha)
-            break;
+            if (beta <= alpha)
+            continue;
 
         } else {
             var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
@@ -157,7 +157,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
             if (beta > maxScoreIndex.score)
             beta = maxScoreIndex.score;
            if (beta <= alpha)
-            break;
+            continue;
         }
 
         PresentGameBoard[availableMoves[i]] = move.index;
