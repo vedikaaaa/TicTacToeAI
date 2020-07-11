@@ -150,13 +150,14 @@ if(currentPlayer=player_2){
 
 var maxscore=MinMax(PresentGameBoard,player,alpha,beta,depth+1);
 bestChoice.score = Math.max(bestChoice.score, maxscore.score); 
-bestChoice.index=move.index;
+
 PresentGameBoard[availableMoves[i]] = move.index;
             alpha = Math.max(alpha, bestChoice.score); 
   
             // Alpha Beta Pruning 
             if (beta <= alpha) 
                 break; 
+                bestChoice.index=move.index;
     }
 return bestChoice;
 }
@@ -171,11 +172,12 @@ else{
 
         var maxscore=MinMax(PresentGameBoard,player_2,alpha,beta,depth+1);
         bestChoice.score = Math.min(bestChoice.score, maxscore.score); 
-        bestChoice.index=move.index;
+        
         PresentGameBoard[availableMoves[i]] = move.index;
         alpha = Math.min(alpha, bestChoice.score); 
         if (beta <= alpha) 
                 break;
+                bestChoice.index=move.index;
     }
 return bestChoice;
 }
