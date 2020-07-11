@@ -147,13 +147,9 @@ if(currentPlayer==player_2){
     for(var i = 0; i<availableMoves.length;i++){
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
-        bestChoice.index=move.index;
-var maxscore=MinMax(PresentGameBoard,player,alpha,beta,depth+1);
-if(bestChoice.score<maxscore.score){
-    bestChoice.score= maxscore.score;
-    bestChoice.index= maxscore.index;
-}
 
+var maxscore=MinMax(PresentGameBoard,player,alpha,beta,depth+1);
+bestChoice.score = Math.max(bestChoice.score, maxscore.score); 
 
 PresentGameBoard[availableMoves[i]] = move.index;
             alpha = Math.max(alpha, bestChoice.score); 
@@ -161,7 +157,7 @@ PresentGameBoard[availableMoves[i]] = move.index;
             // Alpha Beta Pruning 
             if (beta <= alpha) 
                 break; 
-                // bestChoice.index=move.index;
+                bestChoice.index=move.index;
     }
 return bestChoice;
 }
@@ -173,24 +169,24 @@ else{
     for(var i = 0; i<availableMoves.length;i++){
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
-        bestChoice.index=move.index;
+
         var maxscore=MinMax(PresentGameBoard,player_2,alpha,beta,depth+1);
-        // bestChoice.score = Math.min(bestChoice.score, maxscore.score); 
-        if(bestChoice.score>maxscore.score){
-            bestChoice.score= maxscore.score;
-            bestChoice.index= maxscore.index;
-        }
+        bestChoice.score = Math.min(bestChoice.score, maxscore.score); 
         
         PresentGameBoard[availableMoves[i]] = move.index;
-        alpha = Math.min(alpha, bestChoice.score); 
+        beta = Math.min(beta, bestChoice.score); 
         if (beta <= alpha) 
                 break;
-                
+                bestChoice.index=move.index;
     }
 return bestChoice;
 }
     
 }
+
+
+
+
 
 
 
