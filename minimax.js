@@ -125,15 +125,18 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
 
     if (CheckForWin(PresentGameBoard, player)) {
         return {
-            score: -100 + depth
+            score: -100 + depth,
+            index:this.index
         };
     } else if (CheckForWin(PresentGameBoard, player_2)) {
         return {
-            score: 100 - depth
+            score: 100 - depth,
+            index:this.index
         };
     } else if (availableMoves.length === 0 || depth == maxDepth) {
         return {
-            score: 0
+            score: 0,
+            index:this.index
         };
     }
 if(currentPlayer=player_2){
