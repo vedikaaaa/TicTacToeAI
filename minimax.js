@@ -122,7 +122,7 @@ function turn(boxId, player) {
 
 function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
     var availableMoves = AvailableMoves();
-
+var move;
     if (CheckForWin(PresentGameBoard, player)) {
         return {
             score: -100 + depth
@@ -137,64 +137,54 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
         };
     }
 
-    var moves = [];
-    for (var i = 0; i < availableMoves.length; i++) {
-        var move = {};
-        move.index = PresentGameBoard[availableMoves[i]];
-        PresentGameBoard[availableMoves[i]] = currentPlayer;
+    
 
-        if (currentPlayer == player_2) {
-            var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
-            move.score = maxScoreIndex.score;
-            if (alpha < maxScoreIndex.score)
-            alpha = maxScoreIndex.score;
-            if (beta <= alpha)
-            continue;
-
-        } else {
-            var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
-            move.score = maxScoreIndex.score;
-            if (beta > maxScoreIndex.score)
-            beta = maxScoreIndex.score;
-           if (beta <= alpha)
-            continue;
+    if (currentPlayer=player_2) {
+        let bestScore = -Infinity;
+        for (let i = 0; i < availableMoves; i++) {
+         
+            if (PresentGameBoard[i][j] == "EMPTY") {
+              PresentGameBoard[i][j] = currentPlayer;
+            //   this.turn++;
+              let score = this.minimax(PresentGameBoard, player, alpha, beta, depth+1);
+              PresentGameBoard[i][j] = "EMPTY";
+            //   this.turn--;
+              if (score > bestScore) {
+                bestScore = score;
+                move = { i, j };
+              }
+              alpha = Math.max(alpha, score);
+              if (beta <= alpha) {
+                break;
+              }
+            
+          }
         }
-
-        PresentGameBoard[availableMoves[i]] = move.index;
-
-
-        moves.push(move);
-    }
-
-    var bestChoice;
-    if (currentPlayer === player_2) {
-        var bestScore = -10000;
-        for (var i = 0; i < moves.length; i++) {
-            if (moves[i].score > bestScore) {
-                bestScore = moves[i].score;
-                if (alpha < bestScore)
-                    alpha = bestScore;
-                if (beta <= alpha)
-                    break;
-                bestChoice = i;
-
+        if (depth === 0) {
+          return move;
+        }
+        return bestScore;
+      } else {
+        let bestScore = Infinity;
+        for (let i = 0; i < availableMoves; i++) {
+         
+            if (PresentGameBoard[i][j] == "EMPTY") {
+              PresentGameBoard[i][j] = currentPlayer;
+            //   this.turn++;
+              let score = this.minimax(PresentGameBoard, player_2, alpha, beta, depth+1);
+              board[i][j] = "EMPTY";
+            //   this.turn--;
+              bestScore = Math.min(bestScore, score);
+              beta = Math.min(beta, score);
+              if (beta <= alpha) {
+                break;
+              }
             }
+          
         }
-    } else {
-        var bestScore = 10000;
-        for (var i = 0; i < moves.length; i++) {
-            if (moves[i].score < bestScore) {
-                bestScore = moves[i].score;
-                if (beta > bestScore)
-                    beta = bestScore;
-                if (beta <= alpha)
-                    break;
-                bestChoice = i;
-            }
-        }
-    }
-
-    return moves[bestChoice];
+        return bestScore;
+      }
+  
 }
 
 function CheckForWin(board, player) {
