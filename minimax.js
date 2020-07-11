@@ -145,7 +145,7 @@ if(currentPlayer=player_2){
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
 
-var maxscore=MinMax(PresentGameBoard,player,alpha,bestChoice,depth+1);
+var maxscore=MinMax(PresentGameBoard,player,alpha,beta,depth+1);
 bestChoice.score = Math.max(bestChoice.score, maxscore.score); 
 bestChoice.index=maxscore.index;
 PresentGameBoard[availableMoves[i]] = move.index;
@@ -166,7 +166,7 @@ else{
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
 
-        var maxscore=MinMax(PresentGameBoard,player_2,alpha,bestChoice,depth+1);
+        var maxscore=MinMax(PresentGameBoard,player_2,alpha,beta,depth+1);
         bestChoice.score = Math.min(bestChoice.score, maxscore.score); 
         bestChoice.index=maxscore.index;
         PresentGameBoard[availableMoves[i]] = move.index;
