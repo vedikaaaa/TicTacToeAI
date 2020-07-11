@@ -140,7 +140,7 @@ var move;
     
 
     if (currentPlayer=player_2) {
-        let bestScore = -Infinity;
+        let bestScore = -100000;
         for (let i = 0; i < availableMoves; i++) {
          
             // if (PresentGameBoard[i][j] == "EMPTY") {
@@ -156,7 +156,7 @@ var move;
                 bestScore = score;
                 move.score=score;
               }
-              alpha = Math.max(alpha, score);
+              alpha = Math.max(alpha, bestScore);
               if (beta <= alpha) {
                 break;
               }
@@ -168,7 +168,7 @@ var move;
         }
         return bestScore;
       } else {
-        let bestScore = Infinity;
+        let bestScore = 100000;
         for (let i = 0; i < availableMoves; i++) {
          
             // if (PresentGameBoard[i][j] == "EMPTY") {
@@ -181,7 +181,7 @@ var move;
             PresentGameBoard[availableMoves[i]] = move.index;
             //   this.turn--;
               bestScore = Math.min(bestScore, score);
-              beta = Math.min(beta, score);
+              beta = Math.min(beta, bestScore);
               if (beta <= alpha) {
                 break;
               }
