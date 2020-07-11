@@ -168,7 +168,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 // PresentGameBoard[availableMoves[i]] = bestChoice.index;
                 bestChoice.score=bestScore.score;
                 bestChoice.index=bestScore.index;
-                return bestChoice;
+                return bestScore;
 
             }return bestChoice;
            
@@ -199,7 +199,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 // PresentGameBoard[availableMoves[i]] = bestChoice.index;
                 bestChoice.score=bestScore.score;
                 bestChoice.index=bestScore.index;
-                return bestChoice;
+                return bestScore;
             }return bestChoice;
            
         }
