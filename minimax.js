@@ -201,7 +201,7 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
                 bestChoice.score=bestScore.score;
                 bestChoice.index=bestScore.index;
                 return bestScore;
-            }return bestChoice;
+            }return bestScore;
            
         }
        
