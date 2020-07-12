@@ -103,7 +103,7 @@ function PresentTurnClick(square) {
                     $('.sug').on('click', function(){suggestions(bestChoice(),player)});
                     
                 }, 700);
-            }else
+            }else if(MultiPlayer=== true)
              { $('.sug').on('click', function(){suggestions(bestChoice(),player)});
            
 
