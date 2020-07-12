@@ -51,18 +51,21 @@ function startGame() {
     $("table").animate({
         opacity: "1"
     });
+    if(MultiPlayer==true){
+        $(".sug").removeClass("disabled");
+        $(".sug").removeClass("noHover");
+    }
     if (MultiPlayer == false) {
         $(".btn-group").removeClass("disabled");
         $(".btn-group").removeClass("noHover");
+        
     }
-    if (MultiPlayer == false) {
         player = player;
         PresentTurn = player;
         PresentPlayTag = $("#PresentTurn");
         $("#f1").text(PresentTurn);
         $("#f2").text(PresentTurn == 'X' ? "O" : "X");
-    }
-    PresentPlayTag = $("#PresentTurn");
+   
     cells.on('click', PresentTurnClick);
     EndOfGame = 0;
     $(".end-game").value = "none";
@@ -78,7 +81,9 @@ function endGame() {
     ClearTicTacToe();
     PresentPlayTag.text("- - - - - - - -");
     cells.off('click');
+  
     $(".btn-group").addClass("disabled");
+    
     maxDepth = 10;
     $('.button').css('color', 'white');
 
@@ -95,7 +100,13 @@ function PresentTurnClick(square) {
                     PresentPlayTag.text("Your Turn : ");
                     cells.on('click', PresentTurnClick);
                     turn(bestChoice(), player_2);
+                    $('.sug').on('click', function(){suggestions(bestChoice(),player)});
+                    
                 }, 700);
+            }else
+             { $('.sug').on('click', function(){suggestions(bestChoice(),player)});
+           
+
             }
         }
     }
@@ -125,71 +136,67 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
 
     if (CheckForWin(PresentGameBoard, player)) {
         return {
-            score: -100 + depth,
-            index:this.index
+            score: -100 + depth
         };
     } else if (CheckForWin(PresentGameBoard, player_2)) {
         return {
-            score: 100 - depth,
-            index:this.index
+            score: 100 - depth
         };
     } else if (availableMoves.length === 0 || depth == maxDepth) {
         return {
-            score: 0,
-            index:this.index
+            score: 0
         };
     }
-if(currentPlayer==player_2){
-    var bestChoice={
-        score:-100000,
-        index:0
-    }; var move={};
-    for(var i = 0; i<availableMoves.length;i++){
+
+    var moves = [];
+    for (var i = 0; i < availableMoves.length; i++) {
+        var move = {};
         move.index = PresentGameBoard[availableMoves[i]];
         PresentGameBoard[availableMoves[i]] = currentPlayer;
 
-var maxscore=MinMax(PresentGameBoard,player,alpha,beta,depth+1);
-bestChoice.score = Math.max(bestChoice.score, maxscore.score); 
+        if (currentPlayer == player_2) {
+            var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1);
+            move.score = maxScoreIndex.score;
+        } else {
+            var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1);
+            move.score = maxScoreIndex.score;
+        }
 
-PresentGameBoard[availableMoves[i]] = move.index;
-            alpha = Math.max(alpha, bestChoice.score); 
-  
-            // Alpha Beta Pruning 
-            if (beta <= alpha) 
-                break; 
-                bestChoice.index=move.index;
-    }
-return bestChoice;
-}
-else{
-    var bestChoice={
-        score:100000,
-        index:0
-    };var move = {};
-    for(var i = 0; i<availableMoves.length;i++){
-        move.index = PresentGameBoard[availableMoves[i]];
-        PresentGameBoard[availableMoves[i]] = currentPlayer;
-
-        var maxscore=MinMax(PresentGameBoard,player_2,alpha,beta,depth+1);
-        bestChoice.score = Math.min(bestChoice.score, maxscore.score); 
-        
         PresentGameBoard[availableMoves[i]] = move.index;
-        beta = Math.min(beta, bestChoice.score); 
-        if (beta <= alpha) 
-                break;
-                bestChoice.index=move.index;
+
+        moves.push(move);
     }
-return bestChoice;
+
+    var bestChoice;
+    if (currentPlayer === player_2) {
+        var bestScore = -10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score > bestScore) {
+                bestScore = moves[i].score;
+                if (alpha < bestScore)
+                    alpha = bestScore;
+                if (beta <= alpha)
+                    break;
+                bestChoice = i;
+
+            }
+        }
+    } else {
+        var bestScore = 10000;
+        for (var i = 0; i < moves.length; i++) {
+            if (moves[i].score < bestScore) {
+                bestScore = moves[i].score;
+                if (beta > bestScore)
+                    beta = bestScore;
+                if (beta <= alpha)
+                    break;
+                bestChoice = i;
+            }
+        }
+    }
+
+    return moves[bestChoice];
 }
-    
-}
-
-
-
-
-
-
-
 
 function CheckForWin(board, player) {
     let plays = board.reduce(
@@ -299,4 +306,21 @@ function activeMultiPlayer() {
         }
         MultiPlayer = MultiPlayer == true ? false : true;
     }
+}
+function suggestions(boxId, player) {
+    setTimeout(function() {
+    $("#" + boxId).animate({
+        opacity: "0.7"
+    });},2);
+    setTimeout(function() {
+        $("#" + boxId).animate({
+            opacity: "1"
+        });},3);
+        
+                $('.sug').css('color', 'white');
+                $(".sug").removeClass("disabled");
+                $(".sug").removeClass("noHover");
+                
+    
+   
 }

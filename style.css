@@ -91,8 +91,10 @@ h2 {
 }
 
 #panel {
+    
     position: absolute;
-    margin-top: 30px;
+ 
+    margin-top: 50px;
     font-size: 30px;
     font-weight: bold;
     text-shadow: 1px 1px 1px rgb(82, 25, 25);
@@ -172,6 +174,9 @@ h2 {
     /* Prevent double borders */
 }
 
+#suggestions{
+    padding: 30px 20px 30px 170px;
+}
 .btn-group .button:hover {
     background-color: rgb(191, 191, 240);
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
@@ -182,6 +187,11 @@ h2 {
     cursor: not-allowed;
     pointer-events: none;
 }
+/* .disabledd{
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+} */
 
 .noHover {
     pointer-events: none;
