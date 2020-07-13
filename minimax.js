@@ -10,6 +10,7 @@ var depth;
 var alpha = Number.MIN_SAFE_INTEGER;
 var beta = Number.MAX_SAFE_INTEGER;
 const WinningCombs = [
+    
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -26,6 +27,7 @@ const cells = $(".cell");
 
 function SetLevelOne() {
     maxDepth = 1;
+
 }
 
 function SetLevelTwo() {
@@ -123,7 +125,7 @@ function turn(boxId, player) {
     } else PresentPlayTag.text("You Play Next: " + currentPlayer);
     boardGame[boxId] = player;
     $("#" + boxId).text(player);
-    let gameFinished = CheckForWin(boardGame, player) || CheckForTie();
+    let gameFinished = CheckForWin(boardGame, player);
     if (gameFinished) {
         gameOver(gameFinished);
     }
@@ -237,7 +239,8 @@ function AvailableMoves() {
 }
 
 function CheckForTie() {
-    if (AvailableMoves().length === 0) {
+    if (AvailableMoves().length === 0&&CheckForWin!=true
+) {
         EndOfGame = 1;
         cells.off('click');
         cells.animate({
@@ -324,3 +327,6 @@ function suggestions(boxId, player) {
     
    
 }
+
+
+
