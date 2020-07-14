@@ -1,4 +1,5 @@
 var boardGame;
+var truedepth = maxDepth;
 var PresentPlayTag = $("#PresentTurn");
 var MultiPlayer = false;
 var player = 'X';
@@ -27,19 +28,22 @@ const cells = $(".cell");
 
 function SetLevelOne() {
     maxDepth = 1;
-
+truedepth= maxDepth;
 }
 
 function SetLevelTwo() {
     maxDepth = 2;
+    truedepth= maxDepth;
 }
 
 function SetLevelThree() {
     maxDepth = 3;
+    truedepth= maxDepth;
 }
 
 function SetLevelInf() {
     maxDepth = 9;
+    truedepth= maxDepth;
 }
 $('.button').on('click', function() {
     $(".btn-group").addClass('noHover');
@@ -49,7 +53,9 @@ $('.button').on('click', function() {
 
 function startGame() {
     maxDepth = 10;
+    truedepth= 10;
     $('.button').css('color', 'white')
+    $('.sug').css('color', '#723267')
     $("table").animate({
         opacity: "1"
     });
@@ -60,6 +66,8 @@ function startGame() {
     if (MultiPlayer == false) {
         $(".btn-group").removeClass("disabled");
         $(".btn-group").removeClass("noHover");
+        $(".sug").removeClass("disabled");
+        $(".sug").removeClass("noHover");
         
     }
         player = player;
@@ -85,7 +93,7 @@ function endGame() {
     cells.off('click');
   
     $(".btn-group").addClass("disabled");
-    
+    $(".sug").addClass("disabled");
     maxDepth = 10;
     $('.button').css('color', 'white');
 
@@ -101,12 +109,12 @@ function PresentTurnClick(square) {
                 setTimeout(function() {
                     PresentPlayTag.text("Your Turn : ");
                     cells.on('click', PresentTurnClick);
-                    turn(bestChoice(), player_2);
-                    $('.sug').on('click', function(){suggestions(bestChoice(),player)});
+                    turn(bestChoice(false), player_2);
+                    $('.sug').on('click', function(){suggestions(bestChoice(true),player)});
                     
                 }, 700);
             }else if(MultiPlayer=== true)
-             { $('.sug').on('click', function(){suggestions(bestChoice(),player)});
+             { $('.sug').on('click', function(){suggestions(bestChoice(true),player)});
            
 
             }
@@ -133,7 +141,12 @@ function turn(boxId, player) {
     PresentTurn = PresentTurn == 'X' ? 'O' : 'X';
 }
 
-function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth) {
+function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth, flag) {
+   
+    if(flag==true)
+    maxDepth=10;
+    if(flag==false)
+    maxDepth= truedepth;
     var availableMoves = AvailableMoves();
 
     if (CheckForWin(PresentGameBoard, player)) {
@@ -253,8 +266,8 @@ function CheckForTie() {
     return false;
 }
 
-function bestChoice() {
-    return MinMax(boardGame, player_2, alpha, beta, 0).index;
+function bestChoice(flag) {
+    return MinMax(boardGame, player_2, alpha, beta, 0,flag).index;
 }
 
 function ClearTicTacToe() {
@@ -311,6 +324,7 @@ function activeMultiPlayer() {
     }
 }
 function suggestions(boxId, player) {
+    if(AvailableMoves.length!=9){
     setTimeout(function() {
     $("#" + boxId).animate({
         opacity: "0.7"
@@ -320,13 +334,13 @@ function suggestions(boxId, player) {
             opacity: "1"
         });},3);
         
-                $('.sug').css('color', 'white');
+                // $('.sug').css('color', 'white');
                 $(".sug").removeClass("disabled");
                 $(".sug").removeClass("noHover");
                 
     
    
-}
+}}
 
 
 

@@ -175,7 +175,23 @@ h2 {
 }
 
 #suggestions{
-    padding: 30px 20px 30px 170px;
+    background-color: rgb(228, 204, 173) !important;
+    border: 1px solid midnightblue;
+    color: rgb(104, 31, 31)!important;
+    text-align: center;
+    text-shadow: 0.7px 0.7px px rgb(82, 25, 25);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    width: 160px;
+    float: right;
+    box-sizing: border-box;
+    margin-right: 220px;
+    margin-top: 10px;
+   
 }
 .btn-group .button:hover {
     background-color: rgb(191, 191, 240);
@@ -187,11 +203,7 @@ h2 {
     cursor: not-allowed;
     pointer-events: none;
 }
-/* .disabledd{
-    opacity: 0.6;
-    cursor: not-allowed;
-    pointer-events: none;
-} */
+
 
 .noHover {
     pointer-events: none;
