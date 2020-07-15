@@ -1,5 +1,4 @@
 var boardGame;
-var truedepth = maxDepth;
 var PresentPlayTag = $("#PresentTurn");
 var MultiPlayer = false;
 var player = "X";
@@ -7,6 +6,7 @@ var player_2 = "O";
 var PresentTurn = player;
 var EndOfGame = 1;
 var maxDepth = 10;
+var truedepth = maxDepth;
 var depth;
 var alpha = Number.MIN_SAFE_INTEGER;
 var beta = Number.MAX_SAFE_INTEGER;
@@ -161,24 +161,10 @@ function MinMax(PresentGameBoard, currentPlayer, alpha, beta, depth, flag) {
     PresentGameBoard[availableMoves[i]] = currentPlayer;
 
     if (currentPlayer == player_2) {
-      var maxScoreIndex = MinMax(
-        PresentGameBoard,
-        player,
-        alpha,
-        beta,
-        depth + 1,
-        flag
-      );
+      var maxScoreIndex = MinMax(PresentGameBoard, player, alpha, beta, depth + 1, flag);
       move.score = maxScoreIndex.score;
     } else {
-      var maxScoreIndex = MinMax(
-        PresentGameBoard,
-        player_2,
-        alpha,
-        beta,
-        depth + 1,
-        flag
-      );
+      var maxScoreIndex = MinMax(PresentGameBoard, player_2, alpha, beta, depth + 1, flag);
       move.score = maxScoreIndex.score;
     }
 
@@ -324,6 +310,7 @@ function activeMultiPlayer() {
     MultiPlayer = MultiPlayer == true ? false : true;
   }
 }
+
 function suggestions(boxId, player) {
   if (AvailableMoves.length != 9) {
     setTimeout(function () {
@@ -341,3 +328,4 @@ function suggestions(boxId, player) {
     $(".sug").removeClass("noHover");
   }
 }
+
