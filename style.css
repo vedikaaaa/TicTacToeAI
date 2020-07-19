@@ -9,15 +9,17 @@ body {
 }
 
 #header-nav {
-    background-color: #2f0b5e;
-    border-radius: 0;
-    border: 0;
+   background-image: linear-gradient(to bottom right,#371168 , rgb(76, 39, 100),rgb(73, 54, 88),rgb(54, 21, 114), rgb(84, 44, 110));
+   border-radius: 0;
+   border: 0;
+   border-left: 0px;
+   border-right: 0px;
 }
 
 #logo-img {
-    background: url('Assets/OIP.jpg') no-repeat;
-    width: 200px;
-    height: 200px;
+    background: url('Assets/MarsLogo2.jpg') no-repeat;
+    width: 150px;
+    height: 150px;
     margin: 2px 2px 2px 2px;
 }
 
@@ -171,7 +173,7 @@ h2 {
 
 .btn-group .button:not(:last-child) {
     border-right: none;
-    /* Prevent double borders */
+    
 }
 
 #suggestions{
@@ -207,4 +209,29 @@ h2 {
 
 .noHover {
     pointer-events: none;
+}
+.dropdown{
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 100px;  
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    background-color: transparent!important;
+}
+.htplay{
+    max-width: 260px;
+}
+.team{
+    font-family: 'Lora', serif;
+    margin-left: 290px;
+    font-size: 1.2em !important;
+    font-style: italic;
+    text-shadow: 1px 1px 1px rgb(64, 205, 224);
+
+}
+.dropdown-toggle{
+    color: rgb(228, 204, 173)!important;
+}
+ul li{
+    background-color: rgb(228, 204, 173);
 }
