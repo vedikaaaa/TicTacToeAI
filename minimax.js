@@ -66,6 +66,7 @@ $(".button").on("click", function () {   //Adds the desired effect to the level 
 });
 
 function startGame() {
+  cells.removeClass("disabled");
   maxDepth = 6;
   truedepth = 6;
   $(".button").css("color", "white");      
@@ -238,6 +239,7 @@ function CheckForWin(board, player) {
 }
 
 function gameOver(gameFinished) {
+  cells.addClass("disabled");
   EndOfGame = 1;
   maxDepth = 6;
   cells.off("click");                                                 //Disable the cells of boardgame
@@ -268,6 +270,7 @@ function AvailableMoves() {
 function CheckForTie() {
   if (AvailableMoves().length === 0) {           //If board game is filled and no Winning combo is found
     EndOfGame = 1;
+    cells.addClass("disabled");
     cells.off("click");
     cells.animate({
       opacity: "0.4",
