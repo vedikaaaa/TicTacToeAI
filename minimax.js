@@ -70,7 +70,7 @@ function startGame() {
   maxDepth = 6;
   truedepth = 6;
   $(".button").css("color", "white");      
-  $(".sug").css("color", "#723267");      //Increases the opacity of table(boardgame) and suggestion button as the game starts
+  $(".sug").css("color", "#723267");      //Increases the opacity of table (boardgame) and suggestion button as the game starts
   $("table").animate({
     opacity: "1",
   });
